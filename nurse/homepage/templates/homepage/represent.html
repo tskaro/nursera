@@ -14,14 +14,11 @@
         </a>
     </div>
 </div> <br> <br> <br> <br>
-
         {% if current_user.is_authenticated %}
         გამარჯობა {{ current_user.username }}
         {% else %}
         გთხოვთ დარეგისტრირდეთ საიტზე
         {% endif %}
-
-<img src="original.jpg" style="margin-left: 170px">
 </body>
 
 {% endblock %}

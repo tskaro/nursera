@@ -9,6 +9,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), nullable=False, unique=True, index=True)
     password_hash = db.Column(db.String(225), nullable=False)
+    user_data_id = db.relationship('NursesModel', backref='users', uselist=False)
 
     def __init__(self, username, password):
         self.username = username

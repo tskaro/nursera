@@ -10,7 +10,6 @@ nurse_blueprint = Blueprint('nurse_registration',
 
 
 @nurse_blueprint.route('/step1', methods=['GET', 'POST'])
-@login_required
 def step1():
     email = None
     first_name = None
@@ -28,7 +27,6 @@ def step1():
 
 
 @nurse_blueprint.route('/step2', methods=['GET', 'POST'])
-@login_required
 def step2():
     address = None
     department = None
@@ -47,13 +45,12 @@ def step2():
 
 
 @nurse_blueprint.route('/validation', methods=['GET', 'POST'])
-@login_required
 def validation():
     form = final_save_to_db()
 
     if form.validate_on_submit():
         print(form.errors)
-        new_nurse = NursesModel(session['email'], session['first_name'], session['last_name'],
+        new_nurse = NursesModel(session['id'], session['email'], session['first_name'], session['last_name'],
                                 session['address'], session['department'], session['shift'])
         db.session.add(new_nurse)
         db.session.commit()

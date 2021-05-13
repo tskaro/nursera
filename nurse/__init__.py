@@ -42,6 +42,7 @@ class NursesModel(db.Model):
     __tablename__ = "nurses"
 
     id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     email = db.Column(db.String)
     first_name = db.Column(db.String)
     last_name = db.Column(db.String)
@@ -49,7 +50,8 @@ class NursesModel(db.Model):
     department = db.Column(db.String)
     shift = db.Column(db.Integer)
 
-    def __init__(self, email, first_name, last_name, address, department, shift):
+    def __init__(self, user_id, email, first_name, last_name, address, department, shift):
+        self.user_id = user_id
         self.email = email
         self.first_name = first_name
         self.last_name = last_name
