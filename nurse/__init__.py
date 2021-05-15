@@ -24,7 +24,7 @@ def create_app():
     migrate.init_app(app, db)
     login_manager.init_app(app)
 
-    login_manager.login_view = 'login'
+    login_manager.login_view = 'user.new_user_registration'
 
     from nurse.user.views import user_blueprint
     app.register_blueprint(user_blueprint)
@@ -60,8 +60,14 @@ class NursesModel(db.Model):
         self.shift = shift
 
     def __repr__(self):
-        return f'Nurse email:{self.email}, name {self.first_name} {self.last_name}, address: {self.address},' \
-               f'department: {self.department}, shift: {self.shift}'
+        return f'email:{self.email}, first_name:{self.first_name}, last_name:{self.last_name}, address:{self.address},' \
+               f'department:{self.department}, shift:{self.shift}'
+
+
+
+
+
+
 
 
 from nurse.nurse_registration.views import nurse_blueprint

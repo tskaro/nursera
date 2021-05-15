@@ -9,16 +9,24 @@
 
 <div class="container my-3">
     <div class="col-md-12 text-center">
+    {% if current_user.is_authenticated %}
         <a href={{url_for('nurse_registration.step1')}}>
-         <button type="button" class="btn btn-primary">Register</button>
+         <button type="button" class="btn btn-primary">შეიყვანე პირადი ინფორმაცია</button>
         </a>
+    {% endif %}
+
     </div>
-</div> <br> <br> <br> <br>
+
+<br> <br> <br> <br>
+
+<div class="col-md-12 text-center">
         {% if current_user.is_authenticated %}
         გამარჯობა {{ current_user.username }}
         {% else %}
         გთხოვთ დარეგისტრირდეთ საიტზე
         {% endif %}
+</div>
+
 </body>
 
 {% endblock %}

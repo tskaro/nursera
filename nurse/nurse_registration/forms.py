@@ -4,22 +4,22 @@ from wtforms.validators import DataRequired, length, Email
 
 
 class registration_form(FlaskForm):
-    email = StringField("შეიყვანე ელექტრონული ფოსტა", [DataRequired(), length(min=4), Email()])
-    first_name = StringField("შეიყვანე სახელი", [DataRequired()])
-    last_name = StringField("შეიყვანე გვარი", [DataRequired()])
-    submit = SubmitField("Next")
+    email = StringField("ელექტრონული ფოსტა", [DataRequired(), length(min=4), Email()])
+    first_name = StringField("სახელი", [DataRequired()])
+    last_name = StringField("გვარი", [DataRequired()])
+    submit = SubmitField("Done")
 
 
 class registration_form2(FlaskForm):
-    address = StringField("შეიყვანე მისამართი", [DataRequired()])
-    department = StringField("შეიყვანე დეპარტამენტი", [DataRequired()])
-    shift = SelectField("სასურველი მორიგეობის განრიგი:",
+    address = StringField("მისამართი", [DataRequired()])
+    department = StringField("დეპარტამენტი", [DataRequired()])
+    shift = SelectField("მორიგეობის განრიგი:",
                         choices=[
                             (16, "16 საათიანი მორიგეობა"),
                             (24, "24 საათიანი მორიგეობა"),
                             {8, "დღის სამსახური"}
                         ])
-    submit = SubmitField("Next")
+    submit = SubmitField("Done")
 
 
 class final_save_to_db(FlaskForm):

@@ -1,8 +1,8 @@
 from flask import Blueprint, flash, redirect, url_for, render_template, request
-from flask_login import login_user
+from flask_login import login_user, current_user
 from nurse.user.forms import RegistrationForm, LoginForm
 from nurse.user.models import User
-from nurse import db
+from nurse import db, NursesModel
 
 user_blueprint = Blueprint('user',
                            __name__,
@@ -42,3 +42,10 @@ def login():
             return redirect(redirect_to)
 
     return render_template('login.html', form=form)
+
+
+@user_blueprint.route('/profile', methods=['GET', 'POST'])
+def user_profile():
+    user_id = current_user.get_id()
+    nurse = NursesModel.query.filter_by(user_id=user_id).first()
+    return render_template('profile.html', nurse=nurse)
